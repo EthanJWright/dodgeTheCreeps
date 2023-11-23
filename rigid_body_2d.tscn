@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://687odkom7eec"]
+
+[ext_resource type="Script" path="res://rigid_body_2d.gd" id="1_lg8c0"]
+[ext_resource type="Texture2D" uid="uid://vglv82fxqqnr" path="res://art/enemyFlyingAlt_1.png" id="1_sn34p"]
+[ext_resource type="Texture2D" uid="uid://bfoaqunrli14q" path="res://art/enemyFlyingAlt_2.png" id="2_qrk30"]
+[ext_resource type="Texture2D" uid="uid://ccdl7hna58rfr" path="res://art/enemySwimming_1.png" id="3_7wf6v"]
+[ext_resource type="Texture2D" uid="uid://bgl0wwbxxblub" path="res://art/enemySwimming_2.png" id="4_upgb3"]
+[ext_resource type="Texture2D" uid="uid://cpcmam6nxabrv" path="res://art/enemyWalking_1.png" id="5_ja8o2"]
+[ext_resource type="Texture2D" uid="uid://dh5wecve08p8e" path="res://art/enemyWalking_2.png" id="6_hs47k"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fre2n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_sn34p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_qrk30")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7wf6v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_upgb3")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ja8o2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hs47k")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ssc4m"]
+radius = 36.0
+height = 100.0
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_lg8c0")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_fre2n")
+animation = &"swimming"
+frame_progress = 0.427205
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ssc4m")
